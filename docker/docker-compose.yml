@@ -1,0 +1,90 @@
+version: '3.3'
+services:
+  axonserver:
+    image: axoniq/axonserver
+    hostname: axonserver
+    volumes:
+      - axonserver-data:/data
+      - axonserver-events:/eventdata
+      - axonserver-config:/config:ro
+    ports:
+      - '8024:8024'
+      - '8124:8124'
+      - '8224:8224'
+    networks:
+      - axon-demo
+
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: fleetDB
+      POSTGRES_USER: hsedjame
+      POSTGRES_PASSWORD: hsedjame
+    networks:
+      - axon-demo
+
+  jaeger:
+    image: jaegertracing/all-in-one
+    ports:
+      - 5775:5775/udp
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 16686:16686
+      - 14268:14268
+      - 9411:9411
+    networks:
+      - axon-demo
+
+  rabbitmq:
+    image: library/rabbitmq:3-management
+    networks:
+      - axon-demo
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: hsedjame
+      RABBITMQ_DEFAULT_PASS: hsedjame
+    volumes:
+      - rabbitmq_etc:/etc/rabbitmq/
+      - rabbitmq_data:/var/lib/rabbitmq/
+      - rabbitmq_logs:/var/log/rabbitmq/
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: fleetDB
+      DB_USER: hsedjame
+      DB_SCHEMA: public
+      DB_PASSWORD: hsedjame
+      KEYCLOAK_USER: hsedjame
+      KEYCLOAK_PASSWORD: hsedjame
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "ssl=true"
+    ports:
+      - 8080:8080
+
+    depends_on:
+      - postgres
+    networks:
+      - axon-demo
+
+volumes:
+  axonserver-data:
+  axonserver-events:
+  axonserver-config:
+  postgres_data:
+  rabbitmq_etc:
+  rabbitmq_data:
+  rabbitmq_logs:
+
+
+networks:
+  axon-demo:

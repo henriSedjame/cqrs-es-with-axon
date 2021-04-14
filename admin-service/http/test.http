@@ -1,0 +1,17 @@
+POST http://localhost:9000/fleet/user
+Content-Type: application/json
+Username: hsedjame
+Password: hsedjame
+Client-Id: reservation-service
+Client-Secret: 34bc1640-f0e2-4fac-9760-b39d9bc51580
+
+< user.json
+
+###
+
+POST http://localhost:9000/fleet/client
+Content-Type: application/json
+Username: hsedjame
+Password: hsedjame
+
+< client.json

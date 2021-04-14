@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/admin-service/admin-service.iml" filepath="$PROJECT_DIR$/admin-service/admin-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core-mq/core-mq.iml" filepath="$PROJECT_DIR$/core-mq/core-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent/parent.iml" filepath="$PROJECT_DIR$/parent/parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parking-service/parking-service.iml" filepath="$PROJECT_DIR$/parking-service/parking-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reservation-service/reservation-service.iml" filepath="$PROJECT_DIR$/reservation-service/reservation-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/security-config/security-config.iml" filepath="$PROJECT_DIR$/security-config/security-config.iml" />
+    </modules>
+  </component>
+</project>

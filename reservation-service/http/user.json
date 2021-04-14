@@ -1,0 +1,6 @@
+{
+  "client_id" : "reservation-service",
+  "username" : "user1",
+  "password" : "user1secret",
+  "grant_type" : "password"
+}

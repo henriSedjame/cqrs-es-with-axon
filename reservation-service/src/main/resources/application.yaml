@@ -1,0 +1,48 @@
+axon:
+  amqp:
+    exchange: BookingEvents
+  eventhandling:
+    processors:
+      carEvents:
+        source: carMessageSource
+
+spring:
+  application:
+    name: reservation-service
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5433/fleetDB
+    username: hsedjame
+    password: hsedjame
+  rabbitmq:
+    username: hsedjame
+    password: hsedjame
+  cloud:
+    stream:
+      bindings:
+        booking-input:
+          destination: ${axon.amqp.exchange}
+          group: fleet-gp
+        booking-output:
+          destination:  ${axon.amqp.exchange}
+
+
+server:
+  port: 8082
+
+auth:
+  server:
+    url: http://localhost:8080/auth/realms/fleet
+
+api:
+  security:
+    rules:
+      permitAll:
+        - "/v3/api-docs/**"
+        - "/api-docs.yaml"
+        - "/swagger-ui.html"
+        - "/webjars/**"
+        - "/bookings/**"
+      permitByRole:
+        user:
+          - "/watch"
+

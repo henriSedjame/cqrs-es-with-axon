@@ -1,0 +1,5 @@
+keycloak:
+  server-url: http://localhost:8080/auth
+
+server:
+  port: 9000

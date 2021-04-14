@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="core" />
+        <module name="security-config" />
+        <module name="core-mq" />
+        <module name="parking-service" />
+        <module name="admin-service" />
+        <module name="reservation-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="admin-service" target="11" />
+      <module name="core" target="1.5" />
+      <module name="core-mq" target="11" />
+      <module name="parent" target="11" />
+      <module name="parking-service" target="11" />
+      <module name="reservation-service" target="11" />
+      <module name="security-config" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="admin-service" options="-parameters" />
+      <module name="core-mq" options="-parameters" />
+      <module name="parent" options="-parameters" />
+      <module name="parking-service" options="-parameters" />
+      <module name="reservation-service" options="-parameters" />
+      <module name="security-config" options="-parameters" />
+    </option>
+  </component>
+</project>

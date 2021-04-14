@@ -1,0 +1,33 @@
+axon:
+  amqp:
+    exchange: CarEvents
+  eventhandling:
+    processors:
+      bookingEvents:
+        source: bookingMessageSource
+
+spring:
+  application:
+    name: parking-service
+  rabbitmq:
+    password: hsedjame
+    username: hsedjame
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5433/fleetDB
+    username: hsedjame
+    password: hsedjame
+  cloud:
+    stream:
+      bindings:
+        car-input:
+          destination: ${axon.amqp.exchange}
+          group: fleet-gp
+        car-output:
+          destination: ${axon.amqp.exchange}
+
+server:
+  port: 8083
+
+auth:
+  server:
+    url: http://localhost:8080/auth/realms/fleet
